@@ -1,6 +1,62 @@
 FII Code book exploration
 
 
+Wave 1 Kenya
+
+WEIGHT - weight for national representation of adults aged 15+
+AA1 -- AA3 : geo
+AA8 -- urban vs rural
+AB4B - 
+DG1 - DG5     demographics
+DL1 - DL5L    income occupation grants 
+DL6 - DL7Q    Other income, secondary income,
+DL11 - DL20   household demograhics and home descriptions
+MT1 - MT10    Mobile technology
+FFI1 - FFI30  financial institutions
+MM1A - MM40   Mobile money services
+SFC1 - SFC4   <subjective ratings on quality of services before/acter mobile money>
+IDA1 - IDA12  <influencers / reccommendations on using mobile money services>
+IO1 - IO11 : mobile money services used
+NP1 - NP9    products, branding, brand recognition, brand services used
+LN1 - LN4   reading comprehension, arithmetic, financial literacy
+PPI_<> poverty line info
+IAGE, AGE_group   -- age ranges
+Education -- edu level
+Rural_females -- "females in rural area"
+rural_poor -- residents below povery line in rural area
+rural_females_poor
+ACCESS_PHONE "adults can access to a mobile phone"
+etc
+
+
+
+Example questions
+MT10 Apart from today, when was the last time you used a mobile phone to make a call, send an SMS, make a transaction or for any other activity?
+Yesterday
+In the past 7 days
+In the past 30 days
+In the past 90 days
+More than 90 days ago
+Never
+
+FFI9. Apart from today, when was the last time you used a bank account for any financial activity?
+
+FFI13.1. If you have to walk, how many minutes does it take you to get to the closest Over the counter in a branch of the bank or MFI from the place where you live?
+
+MM16. Have you ever used a mobile money account to do the following ?: Receive wages for secondary job(s)
+
+MM19_20. In the past 30 days, how many times did you use a mobile money account(s) for such financial activities? - Give a loan or receive payments on a loan
+
+SFC1. On a scale from 0 (Extremely bad) to 10 (Extremely good), rate the choice of financial options that was available to you before you had access to a bank account.
+
+IO1.3. In the past 90 days, how many times did you need to do the following ?  Transfer money between your m-money account and your bank account
+
+
+
+
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------
 Wave 3 Nigeria
 some free form questions then multiple choice
  
