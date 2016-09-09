@@ -1,0 +1,199 @@
+
+
+Questions retained for analysis
+
+ Set 1 Basic demographics
+ Set 2 Mobile and Mobile money usage
+ Set 3 Retention (longitudinal) 
+
+
+Wave 3
+Selected using Uganda Wave 3 questionnaire
+To CONFIRM: 
+  Nigeria
+  Kenya
+  Tanzania
+
+Set 1 Basic Demographics
+DG1 : Year of birth
+DG2 : male/female (observed)
+1 male
+2 female
+DG3 : marital status
+1  Single/ never married
+2  Polygamously married
+3  Monogamously married
+4  Divorced
+5  Separated
+6  Widowed
+7  Living together/ cohabiting
+8  Other (Specify)
+9  DK/Refused
+DG4 : education level
+1  No formal education
+2  Primary education not complete
+3  Primary education complete
+4  Some secondary
+5  Secondary education complete
+6  Some secondary vocational training / some certificate
+7  Secondary vocational training complete / certificate complete
+8  Some diploma
+9  Diploma complete
+10 Some college/university
+11 Complete university degree
+12 Post-graduate university degree
+13 Koranic school
+14 Other
+15 DK/Refused
+    
+
+
+Set 2 Mobile and Mobile money usage
+
+MM1. ASK ALL. Have you ever heard of something called Mobile Money?
+SINGLE ANSWER.
+1 Yes
+2 No
+
+MM4. ASK IF AT LEAST ONE PROVIDER MARKED IN MM2 OR MM3. OTHERS SKIP TO THE NEXT SECTION. Have you ever used this mobile money service for any financial activity?
+MM6. ASK IF AT LEAST ONE PROVIDER MARKED IN MM2 OR MM3. OTHERS SKIP TO MM12. Do you have a registered account (account registered in your name) with this mobile money service?
+MM7. ASK IF MM4=1 and MM6=1 FOR THE SAME PROVIDER. OTHERS SKIP TO MM8. Did you register for this mobile money account before or after you started using this mobile money service?
+For MM4 - MM8
+    MTN Mobile Money
+    Airtel Money 
+    M-Sente
+    Ezee Money
+    Vodafone M-PESA
+    Africell money
+    Safaricom M-PESA
+    Other (Specify)
+
+MM10. What is the biggest challenge you face when using mobile money?
+1  Service system down time
+2  Agent system down time
+3  Difficulty operating the phone/using menu
+4  Unclear transaction charges/fees
+5  Agent float/cash availability
+6  Contacting customer care
+7  Sending to a wrong number
+8  Family/friends stealing money
+9  Other fraud (Specify)
+10 Other (Specify)
+11 DK/Refused
+
+MM12 What is the main reason you have never used mobile money services?
+1  I do not know what it is
+2  I do not know how to open one
+3  I do not have a state ID or other required documents
+4  There is no point-of-service/agent close to where I live
+5  I do not need one, I do not make any transactions
+6  Registration paperwork is too complicated
+7  Registration fee is too high
+8  Using such account is difficult
+9  Fees for using this service are too high
+10 I never have money to make transactions with this service
+11 No one among my friends or family use this service
+12 I do not understand this service; I do not know what I can use it for
+13 I do not have a smartphone
+14 I do not trust that my money is safe on a mobile money account
+15 My husband, family, in-laws do not approve of me having a mobile money account
+16 It is against my religion
+17 I don’t use because all agents are men
+18 Mobile money does not provide anything better/any advantage over the financial services I currently use
+19 Other (Specify)
+
+
+
+Set 3 Retention (longitudinal) 
+
+MM5. ASK FOR EACH MOBILE MONEY PROVIDER MARKED IN MM4. IF NO PROVIDERS MARKED SKIP TO MM6. Apart from today, when was the last time you conducted any financial activity with this mobile money service?
+    1=Yesterday
+    2=In the past 7 days
+    3=In the past 30 days
+    4=In the past 90 days
+    5=More than 90 days ago
+MM8. ASK FOR ALL SERVICES MARKED IN MM6. OTHERS SKIP TO MM9. Apart from today, when was the last time you conducted any financial activity using these registered accounts?
+    1=Yesterday
+    2=In the past 7 days
+    3=In the past 30 days
+    4=In the past 90 days
+    5=More than 90 days ago
+    6=Never
+For MM4 - MM8
+    MTN Mobile Money
+    Airtel Money 
+    M-Sente
+    Ezee Money
+    Vodafone M-PESA
+    Africell money
+    Safaricom M-PESA
+    Other (Specify)
+
+
+MT17. Apart from today, when was the last time you performed the following activities on your personal phone or on the phone that you borrow/rent from other people? 
+    1=Yesterday
+    2=In the past 7 days
+    3=In the past 30 days
+    4=In the past 90 days
+    5=More than 90 days ago
+    6=Never
+Made calls
+Received calls
+Sent/received text messages
+Sent/received photo messages (MMS)
+Used/browsed the internet
+Downloaded music, video or games
+Made a financial transaction such as send/receive money, pay debt, or banking transaction
+Used “Call Tunes” or other audio/video on-demand-from operator services
+Used Facebook, Whatsap, Twitter, Instagram or another social networking site
+Took a color picture
+Downloaded/used any other mobile application
+Used touch-screen
+Navigation, maps
+
+MM9 For how long have you been using mobile money services?
+1  Less than 1 month
+2  More than 1 month to 3 months
+3  More than 3 months to 6 months
+4  More than 6 months to 1 year
+5  More than 1 year
+
+
+
+MAYBE use the following
+
+IFI1. ASK ALL. Have you ever used any of the following?
+IFI2. ASK ONLY FOR OPTIONS MARKED “YES” IN IFI1. OTHERS GO TO IFI3. Apart from today when was the last time you used this financial service for any financial activity?
+    1=Yesterday
+    2=In the past 7 days
+    3=In the past 30 days
+    4=In the past 90 days
+    5=More than 90 days ago
+    6=Stopped using altogether 
+IFI3. ASK ALL. Do you have an account/membership in your name with any of the following?
+IFI4. ASK ONLY FOR OPTIONS MARKED IN IFI3. OTHERS GO TO IFI5. Apart from today, when was the last time you used the account/membership that is in your name for this service?
+    1=Yesterday
+    2=In the past 7 days
+    3=In the past 30 days
+    4=In the past 90 days
+    5=More than 90 days ago
+    6=Stopped using altogether 
+
+For IFI1 - IFI4
+    1.Microfinance institution
+    2.Cooperative
+    3.SACCO  -- #AA specific to Kenya?
+    4.Post office bank
+    5.Mery go round like Nigiinas or another informal saving network
+    6.A money guard/ someone in workplace or neighborhood that collects and keeps savings deposits on a regular basis
+    7.Savings collectors
+    8.A digital card, a recharge card that is not attached to a bank or MFI account
+    9.Other financial service (Specify)
+
+IFI10. ASK IF “YES” FOR MICROFINANCE INSTITUTE USE IN IFI1. OTHERS GO TO IFI11 Have you ever used your MFI account for the following?
+IFI11. ASK IF “YES” FOR COOPERATIVE USE IN IFI1. OTHERS GO TO IFI12 Have you ever used your cooperative account for the following?
+IFI12. ASK IF “YES” FOR SACCO USE IN IFI1. OTHERS GO TO IFI13 Have you ever used your SACCO account for the following? 
+IFI13. ASK IF “YES” FOR POST OFFICE USE IN IFI1. OTHERS GO TO IFI14. Have you ever used your post office bank account for the following?
+24. Transfer money from one non-bank financial institution (SACCO, MFI, etc.) to a mobile money account or from a mobile money account to another financial institution
+
+
