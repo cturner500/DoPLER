@@ -8,18 +8,18 @@ Questions retained for analysis
 
 
 Wave 3
-Selected using Uganda Wave 3 questionnaire
+Selected using Uganda(U) Wave 3 questionnaire
 To CONFIRM: 
-  Nigeria
-  Kenya
-  Tanzania
+  Nigeria (N)
+  Kenya (K)
+  Tanzania (T)
 
 Set 1 Basic Demographics
-DG1 : Year of birth
-DG2 : male/female (observed)
+DG1 : Year of birth UT
+DG2 : male/female (observed) UT
 1 male
 2 female
-DG3 : marital status
+DG3 : marital status UT
 1  Single/ never married
 2  Polygamously married
 3  Monogamously married
@@ -29,7 +29,7 @@ DG3 : marital status
 7  Living together/ cohabiting
 8  Other (Specify)
 9  DK/Refused
-DG4 : education level
+DG4 : education level UT
 1  No formal education
 2  Primary education not complete
 3  Primary education complete
@@ -50,15 +50,14 @@ DG4 : education level
 
 Set 2 Mobile and Mobile money usage
 
-MM1. ASK ALL. Have you ever heard of something called Mobile Money?
-SINGLE ANSWER.
+MM1. ASK ALL. Have you ever heard of something called Mobile Money?  UT
 1 Yes
 2 No
 
 MM4. ASK IF AT LEAST ONE PROVIDER MARKED IN MM2 OR MM3. OTHERS SKIP TO THE NEXT SECTION. Have you ever used this mobile money service for any financial activity?
 MM6. ASK IF AT LEAST ONE PROVIDER MARKED IN MM2 OR MM3. OTHERS SKIP TO MM12. Do you have a registered account (account registered in your name) with this mobile money service?
 MM7. ASK IF MM4=1 and MM6=1 FOR THE SAME PROVIDER. OTHERS SKIP TO MM8. Did you register for this mobile money account before or after you started using this mobile money service?
-For MM4 - MM8
+For MM4 - MM8 Uganda
     MTN Mobile Money
     Airtel Money 
     M-Sente
@@ -67,8 +66,16 @@ For MM4 - MM8
     Africell money
     Safaricom M-PESA
     Other (Specify)
+For MM4 - MM8 Tanzania
+    Vodacom M-PESA
+    Tigo Pesa
+    Airtel Money
+    Zantel Ezy-pesa
+    SMART- B Pesa
+    Other (Specify)
 
-MM10. What is the biggest challenge you face when using mobile money?
+
+MM10. What is the biggest challenge you face when using mobile money? UT
 1  Service system down time
 2  Agent system down time
 3  Difficulty operating the phone/using menu
@@ -81,7 +88,7 @@ MM10. What is the biggest challenge you face when using mobile money?
 10 Other (Specify)
 11 DK/Refused
 
-MM12 What is the main reason you have never used mobile money services?
+MM12 What is the main reason you have never used mobile money services? UT
 1  I do not know what it is
 2  I do not know how to open one
 3  I do not have a state ID or other required documents
@@ -129,8 +136,54 @@ For MM4 - MM8
     Safaricom M-PESA
     Other (Specify)
 
+MM15. ASK IF AT LEAST ONE SERVICE MARKED IN MM4. OTHERS SKIP TO THE NEXT SECTION. Have you ever used a mobile money account to do the following…? UT
+1=Yes
+2=No
+MM17. ASK FOR EACH ACTIVITY MARKED IN MM15. IF NO ACTIVITIES MARKED IN MM15, SKIP TO MM22. How often do you use mobile money for this activity?  UT
+1=Daily
+2=Weekly
+3=Once in 15 days
+4=Monthly
+5=Once every 3 months
+6=Once every 6 months
+7=Once a year
+8=Almost never
 
-MT17. Apart from today, when was the last time you performed the following activities on your personal phone or on the phone that you borrow/rent from other people? 
+
+For MM15-MM17
+1.Deposit money
+2.Withdraw money
+3.Buy airtime top-ups, pay mobile phone bill
+4.Pay a school fee
+5.Pay a medical bill
+6.Pay an electricity bill
+7.Pay for water access or delivery
+8.Pay for solar lantern or a solar home system
+9.Pay TV/cable/satellite bill
+10.Pay a government bill, including tax, fine or fee
+11.Send money to family members, friends, workmates or other acquaintances for regular support/allowances, to help with emergencies, or for other reasons
+12.Receive money from family members, friends, workmates or other acquaintances for regular support/allowances, to help with emergencies, or for other reasons
+13.Receive welfare, pension or other benefit payment from the government 
+14.Receive wages for primary or secondary job
+15.Pay for large acquisitions, including land, cattle, residence
+16.Make insurance-related payments or receive claims on insurance
+17. Take a loan or make payments on a loan, give a loan or receive payments on a loan
+18. Save money for a future purchase or payment
+19.Set aside money for pension, paid pension contributions
+20. Set money aside just in case/for an undetermined purpose
+21 Make an investment, including buy stock or shares
+22. Pay for goods or services at a grocery store, clothing shop or any other store/shop
+23. Transfer money from one mobile money account to another mobile money account
+24. Transfer money from a bank account to a mobile money account; transfer money from a mobile money account to a bank account
+25 Transfer money from a mobile money account to an account at another financial institution (SACCO, MFI, etc.)
+26. Pay money to or receive money from your Savings and/or lending group
+27. Pay rent
+28. Account maintenance: Check your account balance, change PIN, receive mini-statement, etc.
+29.Other (Specify)
+
+
+
+MT17. Apart from today, when was the last time you performed the following activities on your personal phone or on the phone that you borrow/rent from other people? UT
     1=Yesterday
     2=In the past 7 days
     3=In the past 30 days
@@ -151,7 +204,7 @@ Downloaded/used any other mobile application
 Used touch-screen
 Navigation, maps
 
-MM9 For how long have you been using mobile money services?
+MM9 For how long have you been using mobile money services?  UT
 1  Less than 1 month
 2  More than 1 month to 3 months
 3  More than 3 months to 6 months
@@ -162,16 +215,16 @@ MM9 For how long have you been using mobile money services?
 
 MAYBE use the following
 
-IFI1. ASK ALL. Have you ever used any of the following?
-IFI2. ASK ONLY FOR OPTIONS MARKED “YES” IN IFI1. OTHERS GO TO IFI3. Apart from today when was the last time you used this financial service for any financial activity?
+IFI1. ASK ALL. Have you ever used any of the following? UT
+IFI2. ASK ONLY FOR OPTIONS MARKED “YES” IN IFI1. OTHERS GO TO IFI3. Apart from today when was the last time you used this financial service for any financial activity? UT
     1=Yesterday
     2=In the past 7 days
     3=In the past 30 days
     4=In the past 90 days
     5=More than 90 days ago
     6=Stopped using altogether 
-IFI3. ASK ALL. Do you have an account/membership in your name with any of the following?
-IFI4. ASK ONLY FOR OPTIONS MARKED IN IFI3. OTHERS GO TO IFI5. Apart from today, when was the last time you used the account/membership that is in your name for this service?
+IFI3. ASK ALL. Do you have an account/membership in your name with any of the following? UT
+IFI4. ASK ONLY FOR OPTIONS MARKED IN IFI3. OTHERS GO TO IFI5. Apart from today, when was the last time you used the account/membership that is in your name for this service? UT
     1=Yesterday
     2=In the past 7 days
     3=In the past 30 days
@@ -179,10 +232,10 @@ IFI4. ASK ONLY FOR OPTIONS MARKED IN IFI3. OTHERS GO TO IFI5. Apart from today, 
     5=More than 90 days ago
     6=Stopped using altogether 
 
-For IFI1 - IFI4
+For IFI1 - IFI4 UT
     1.Microfinance institution
     2.Cooperative
-    3.SACCO  -- #AA specific to Kenya?
+    3.SACCO 
     4.Post office bank
     5.Mery go round like Nigiinas or another informal saving network
     6.A money guard/ someone in workplace or neighborhood that collects and keeps savings deposits on a regular basis
@@ -190,10 +243,9 @@ For IFI1 - IFI4
     8.A digital card, a recharge card that is not attached to a bank or MFI account
     9.Other financial service (Specify)
 
-IFI10. ASK IF “YES” FOR MICROFINANCE INSTITUTE USE IN IFI1. OTHERS GO TO IFI11 Have you ever used your MFI account for the following?
-IFI11. ASK IF “YES” FOR COOPERATIVE USE IN IFI1. OTHERS GO TO IFI12 Have you ever used your cooperative account for the following?
-IFI12. ASK IF “YES” FOR SACCO USE IN IFI1. OTHERS GO TO IFI13 Have you ever used your SACCO account for the following? 
-IFI13. ASK IF “YES” FOR POST OFFICE USE IN IFI1. OTHERS GO TO IFI14. Have you ever used your post office bank account for the following?
-24. Transfer money from one non-bank financial institution (SACCO, MFI, etc.) to a mobile money account or from a mobile money account to another financial institution
+IFI10. ASK IF “YES” FOR MICROFINANCE INSTITUTE USE IN IFI1. OTHERS GO TO IFI11 Have you ever used your MFI account for the following? UT
+IFI11. ASK IF “YES” FOR COOPERATIVE USE IN IFI1. OTHERS GO TO IFI12 Have you ever used your cooperative account for the following? UT
+IFI12. ASK IF “YES” FOR SACCO USE IN IFI1. OTHERS GO TO IFI13 Have you ever used your SACCO account for the following? UT
+IFI13. ASK IF “YES” FOR POST OFFICE USE IN IFI1. OTHERS GO TO IFI14. Have you ever used your post office bank account for the following? UT
 
 
