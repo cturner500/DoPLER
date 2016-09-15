@@ -119,6 +119,7 @@ MM5. ASK FOR EACH MOBILE MONEY PROVIDER MARKED IN MM4. IF NO PROVIDERS MARKED SK
     3=In the past 30 days
     4=In the past 90 days
     5=More than 90 days ago
+    
 MM8. ASK FOR ALL SERVICES MARKED IN MM6. OTHERS SKIP TO MM9. Apart from today, when was the last time you conducted any financial activity using these registered accounts?
     1=Yesterday
     2=In the past 7 days
@@ -127,19 +128,12 @@ MM8. ASK FOR ALL SERVICES MARKED IN MM6. OTHERS SKIP TO MM9. Apart from today, w
     5=More than 90 days ago
     6=Never
 For MM4 - MM8
-    MTN Mobile Money
-    Airtel Money 
-    M-Sente
-    Ezee Money
-    Vodafone M-PESA
-    Africell money
-    Safaricom M-PESA
-    Other (Specify)
+    <service providers, depending on country>
 
 MM15. ASK IF AT LEAST ONE SERVICE MARKED IN MM4. OTHERS SKIP TO THE NEXT SECTION. Have you ever used a mobile money account to do the following…? UT
 1=Yes
 2=No
-MM17. ASK FOR EACH ACTIVITY MARKED IN MM15. IF NO ACTIVITIES MARKED IN MM15, SKIP TO MM22. How often do you use mobile money for this activity?  UT
+MM17. ASK FOR EACH ACTIVITY MARKED IN MM15. IF NO ACTIVITIES MARKED IN MM15, SKIP TO MM22. How often do you use mobile money for this activity?  UTNK
 1=Daily
 2=Weekly
 3=Once in 15 days
@@ -148,7 +142,6 @@ MM17. ASK FOR EACH ACTIVITY MARKED IN MM15. IF NO ACTIVITIES MARKED IN MM15, SKI
 6=Once every 6 months
 7=Once a year
 8=Almost never
-
 
 For MM15-MM17
 1.Deposit money
