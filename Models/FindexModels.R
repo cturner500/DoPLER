@@ -9,7 +9,10 @@
 #1: Import Kenya, Uganada, Tanzania FINDEX data
 #2: Simple Recursive Partition Tree to visualize splits
 #3: Random Forest and Logistic Regression to predict mobile financial services usage
-#4: Frequency Tables
+#4: FINDEX: Frequency Tables
+#5: Import Merged FII Wave 3 data
+#6: FII: Model Longitudinal Usage (Retention Proxy)
+#7: FII: Frequency Tables
 #5: Conclusions
 
 #0: Import Libraries
@@ -88,6 +91,18 @@ length(tree$variable.importance)
 barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
 names(tree)
 
+#now let's look just at demographic factors (non-behavioral factors)
+names(d2)
+d4 <- d2[,c(1:6,28)]
+tree <- rpart(If.has.account..made.a.transaction.using.a.mobile.phone ~.,data=d4, cp=.005)
+par(mar=c(5,5,5,5))
+plot(tree)
+text(tree)
+barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
+
+boxplot(d4$Respondent.age~d4$If.has.account..made.a.transaction.using.a.mobile.phone)
+
+
 #3: Random Forest and Logistic Regression to predict mobile financial services usage
 d3 <- d2
 #d3 <- na.roughfix(d3)
@@ -111,6 +126,7 @@ names(forest)
 head(forest$err)
 
 plot(forest$err.rate[,1], type='l',col=4, main = "OOB Error Rate, Random Forest", sub="Kenya, Tanzania, Uganda, 2014: 3008 Respondents, 1076 account holders. Unweighted.")
+
 forest <- randomForest(If.has.account..made.a.transaction.using.a.mobile.phone~.,data=d3, ntree=100)
 varImpPlot(forest, main = "Random Forest Variable Importance Plot: Predicting Use of Mobile Money", col=4, sub="Kenya, Tanzania, Uganda, 2014: 3008 Respondents, 1076 account holders. Unweighted.")
 
@@ -158,12 +174,97 @@ htmlTable(vars,
           n.cgroup=n.cgroup, 
           rgroup=rgroup, 
           n.rgroup = n.rgroup, 
-          caption="Kenya, Tanzania, Uganda: 3008 Respondents, 1076 account holders. Unweighted. <sup>&dagger;</sup> 2014", 
+          caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 3008 Respondents, 1076 account holders. Unweighted. <sup>&dagger;</sup> 2014", 
           tfoot="<sup>&dagger;</sup> n=1076 observations, FINDEX 2014",
           ctable=TRUE)
 
 
+#5: Import Merged FII Wave 3 data
+fii <- read.csv("/Users/Cameron/Google Drive/DataGuild/Rockefeller/DoPLER/Data/merged_fii_data_wave3_20160910.csv")
+summary(fii)
+barplot(table(fii$country),col=4)
+#let's strip nigeria:
+fii <- fii[fii$country!='nigeria',]
+fii$country<- factor(fii$country)
+barplot(table(fii$country),col=4)
+table(fii$country)
+#about 3k per country.
+names(fii)
+summary(fii[,59:63])
+
+#create new variable that is the min of these variable:
+
+fii$minFS <- apply(fii[,59:63], 1, min, na.rm=T)
+barplot(table(fii$minFS), col=4)
+
+#let's change the Infs to 6's (never)
+fii$minFS[fii$minFS=='Inf'] <- 6
+fii$everFS <- ifelse(fii$minFS==6,0,1)
+summary(fii$everFS)
+barplot(table(fii$minFS), col=4)
+plot(density(fii$minFS[fii$country=="uganda"]), col=2,
+     main="Time Since Last Mobile Money Tx",
+     sub="Ken=Grn,Ugd=Red,Tnz=Blu, 1:1d,2:7d,3:30d,4:90d,5:>90d,6:Never")
+lines(density(fii$minFS[fii$country=="kenya"]), col=3)
+lines(density(fii$minFS[fii$country=="tanzania"]), col=4)
+
+#looks like a decent response variable, ordinal, where 1 is used fin svcs yesterday and 6 is never  
 
 
+
+#6: FII: Model Longitudinal Usage (Retention Proxy)
+
+names(fii)
+tree <- rpart(minFS~.,data=fii[,c(2:6,94)], cp=0.001)
+rpart.plot(tree)
+par(mar=c(10,20,10,10))
+
+barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
+
+boxplot(fii$year_of_birth~fii$minFS, col=4)
+boxplot(fii$education_level~fii$minFS, col=4, main="Time Since Last Mobile Financial Usage (X) by Education Level (Y)")
+boxplot(fii$minFS~fii$gender, col=4)
+
+fiisub <- na.roughfix(fii[,c(2:6,94)])
+forest <- randomForest(minFS~.,data=fiisub)
+summary(forest)
+
+plot(forest$err.rate[,1], type='l',col=4, main = "OOB Error Rate, Random Forest", sub="Kenya, Tanzania, Uganda, 2014: FII 8995 Respondents.")
+varImpPlot(forest, main = "Random Forest Variable Importance Plot: Predicting Use of Mobile Money", col=4, sub="Kenya, Tanzania, Uganda, wave3: FII 8995 Respondents. Unweighted.")
+
+#7: Compare to "ever use" FII:
+tree <- rpart(everFS~.,data=fii[,c(2:6,95)], cp=0.001)
+rpart.plot(tree)
+barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
+
+
+forest <- randomForest(as.factor(everFS)~.,data=fii[complete.cases(fii[,c(2:6,95)]),c(2:6,95)],cp=0.001)
+varImpPlot(forest, main = "Random Forest Variable Importance Plot: Predicting Use of Mobile Money", col=4, sub="Kenya, Tanzania, Uganda, 2014: 3008 Respondents, 1076 account holders. Unweighted.")
+
+
+#hmm, "ever" looks very similar in variable importance vs. differing the time windows.
+#likely the signal for 6 (never used) is dominating the nuance of the smaller time variations.
+#let's look at a model that just seeks to differentiate 1-5:
+fii2 <- fii[fii$minFS<6,c(2:6,94)]
+summary(fii2)
+hist(fii2$minFS)
+tree <- rpart(as.factor(minFS)~.,data=fii[fii$minFS<6,c(2:6,94)], cp=0.001)
+rpart.plot(tree)
+barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
+par(mar=c(5,5,5,5))
+
+summary(complete.cases(fii2))
+fii3 <- fii2[complete.cases(fii2),]
+summary(fii3)
+forest <- randomForest(as.factor(minFS)~.,data=fii3, cp=0.001)
+varImpPlot(forest, main = "Random Forest Variable Importance Plot: Predicting Use of Mobile Money", col=4, sub="Kenya, Tanzania, Uganda, 2014: 3008 Respondents, 1076 account holders. Unweighted.")
+boxplot(fii3$year_of_birth~fii3$minFS,col=4)
+
+tree <- rpart(as.factor(minFS)~.,data=fii3,cp=0.001)
+barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
+
+
+#7: FII: Frequency Tables
 #5: Conclusions
+
 
