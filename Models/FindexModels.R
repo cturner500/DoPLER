@@ -274,6 +274,7 @@ tree$cptable
 #Friendly Factor Row Names:
 
 #label gender:
+fii$gender <- as.factor(fii$gender)
 levels(fii$gender) <- c("Male","Female")
 summary(fii$gender)
 
@@ -552,7 +553,8 @@ names(x) <- sub("serv4", "OrangeMoney", names(x) )
 names(x) <- sub("serv5", "Tangaza", names(x) )
 names(x) <- sub("serv6", "MobiCash", names(x) )
 names(x) <- sub("serv7", "Equitel", names(x) )
-
+names(x)
+names(fii) <- names(x)
 #Now create table
 
 cgroup <- "Responses by Country"
@@ -598,9 +600,5 @@ htmlTable(vars,
           caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 8895 Respondents.<sup>&dagger;</sup> ", 
           tfoot="<sup>&dagger;</sup> n=8955 observations, FII",
           ctable=TRUE)
-#summary(fii)
-#names(fii)
+
 #5: Conclusions
-
-
-View(vars)
