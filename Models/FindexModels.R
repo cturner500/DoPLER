@@ -144,7 +144,7 @@ lines(density(d3$Respondent.age[d3$If.has.account..made.a.transaction.using.a.mo
 
 cgroup <- "Made Mobile Transaction"
 n.cgroup <- 3 #no, yes, p-value
-rgroup <- names(d3)
+#rgroup <- names(d3)
 
 vars <- NULL
 n.rgroup <- NULL
@@ -152,13 +152,14 @@ curRows <- NULL
 tempData <- d3
 #remove has.account(no variance, was a filter)
 tempData <- tempData[,-c(7:8)]
+rgroup <- names(tempData)
 
 j <- 17 #response varaible, mobile acct transaction
 
 for(i in 1:ncol(tempData)){
   print(i)
   curRows <- getDescriptionStatsBy(tempData[,i], tempData[,j], useNA='ifany', html=TRUE, show_all_values=TRUE, statistics=TRUE)
-  curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
+  #curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
   #curRows <- data.frame(curRows)
   if(i>1){ #use colnames defined by first column
     colnames(curRows) <- colnames(vars)
@@ -269,8 +270,337 @@ names(tree)
 tree$cptable
 
 #7: FII: Frequency Tables
-names(fii)
 
+#Friendly Factor Row Names:
+
+#label gender:
+levels(fii$gender) <- c("Male","Female")
+summary(fii$gender)
+
+#factor marital status:
+marital_status = c("Single","Polygmous","Monogomous","Divorced","Separated","Widowed","Living Together","Other","Refused")
+length(marital_status)
+summary(as.factor(fii$marital_status))
+fii$marital_status <- as.factor(fii$marital_status)
+levels(fii$marital_status) <- marital_status
+summary(fii$marital_status)
+
+#factor up education level:
+education_level <- c("None","Primary","Some Secondary","Secondary Complete","Some Secondary Vocational",
+                     "Complete Secondary Vocational", "Some Diploma","Diploma Complete","Some College",
+                     "Some University","Complete University","Post Graduate","Koranic","Other","Refused")
+fii$education_level <- as.factor(fii$education_level)
+levels(fii$education_level) <- education_level
+summary(fii$education_level)
+
+#Heard of mobile money:
+fii$heard_of_mobile_money <- as.factor(fii$heard_of_mobile_money)
+levels(fii$heard_of_mobile_money) <- c("Yes","No")
+summary(fii$heard_of_mobile_money)
+
+#Biggest Challenge
+
+fii$biggest_challenge_with_mobile_money <- as.factor(fii$biggest_challenge_with_mobile_money)
+
+# Service system down time/ Mtambo wa huduma kuwa haifanyi kazi
+# Agent system down time/ Mtambo wa agenti kuwa haifanyi kazi
+# Difficulty operating the phone/using menu/  Ugumu wa kutumia simu ukitumia menu
+# Unclear transaction charges/fees/ Malipo yasiyoeleweka
+# Agent float/cash availability/ Kutopatikana kwa pesa  kwenye agenti
+# Contacting customer care/  Kuwasiliana na wanaojali maslahi ya wateja
+# Sending to a wrong number/ Kutuma pesa kwa nambari isiyostahili
+# Family/friends stealing money/ Jamaa/marafiki kuiba pesa
+# Other fraud (Specify)/ Udanganyifu mwingine
+# Other (Specify)/ Nyingine (taja)
+# DK/Refused
+
+levels(fii$biggest_challenge_with_mobile_money) <- c("Service down time",
+                                                     "Agent down time",
+                                                     "Operating phone",
+                                                     "Unclear Tx fees",
+                                                     "Agent float cash avail",
+                                                     "Contacting customer care",
+                                                     "Sending to wrong number",
+                                                     "Family friends stealing money",
+                                                     "Other fraud",
+                                                     "Other",
+                                                     "DK/Refused")
+summary(fii$biggest_challenge_with_mobile_money)
+
+#Reason never used
+fii$reason_never_used_mobile_money <- as.factor(fii$reason_never_used_mobile_money)
+# I do not know what it is/ Sijui hiyo ni  nini
+# I do not know how to open one/ Sijui jinsi ya kufungua moja
+# I do not have a state ID or other required documents /Sina kitambulisho cha kitaifa /stikababadhi zinginezo zinazotakikana
+# There is no point-of-service/agent close to where I live/ Hakuna muhudumu/au ajenti karibu na mahali ninapoishi
+# I do not need one, I do not make any transactions/ Sihitaji moja, sifanyi shughuli zozoteza kuhutaji huduma hio
+# Registration paperwork is too complicated /Shughuli ya kujiandikisha ni ngumu sana kwangu
+# Registration fee is too high /Ada ya kujisajili iko juu
+# Using such account is difficult /Kutumia akaunti kama hiyo ni ngumu
+# Fees for using this service are too high Ada  ya kutumia huduma hii ni juu sana
+# I never have money to make transactions with this service /Sina pesa ya kufanya shughuli na huduma hii
+# No one among my friends or family use this service/Hakuna yeyote kati ya marafiki wangu au jamaa hutumia huduma hii
+# I do not understand this service; I do not know what I can use it for/Sielewi huduma hii ,sijui nitaitumia vipi
+# I do not have a mobile phone /Sina simu ya mkononi
+# I do not trust that my money is safe on a mobile money account/Siamini kuwa pesa yangu iko salama katika akaunti ya pesa kwenye simu ya  mkononi
+# My husband, family, in-laws do not approve of me having a mobile money account/Mume wangu,familia, shemeji hawakubali nikuwe na akaunti ya pesa ya simu ya mkononi
+# It is against my religion// Ni kinyume na dini yangu
+# I don’t use because all agents are men/ Situmii kwa sababu maajenti wote ni wanaume
+# Mobile money does not provide anything better/any advantage over the financial services I currently use/ Huduma ya pesa  kwenye simu ya mkononi haitoi kitu chochote bora / faida yoyote kuliko huduma za kifedha mimi hutumia kwa sasa
+# Other (Specify) Nyingine (Taja)
+
+summary(fii$reason_never_used_mobile_money)
+levels(fii$reason_never_used_mobile_money) <- c("Don't know what it is",
+                                                "Don't know how to open",
+                                                "Don't have ID",
+                                                "No POS",
+                                                "Don't need",
+                                                "Registration too complicated",
+                                                "Registration fee too high",
+                                                "Too difficult",
+                                                "Tx fee too high",
+                                                "No money",
+                                                "No friends or family using",
+                                                "Don't understand",
+                                                "No phone",
+                                                "Don't trust",
+                                                "Family don't approve",
+                                                #No one answered this: "Against religion",
+                                                "All agents men",
+                                                "No advantage over existing",
+                                                "Other")
+summary(fii$reason_never_used_mobile_money)
+
+#CONVERT ALL "ever used" to Yes/no
+
+#df[ , grepl( "ABC" , names( df ) ) ]
+
+x <- fii[, grepl( "ever_used_mobile_money_for" , names(fii ) )] 
+x <- apply(x,2,as.factor)
+x[x==1] <- "Yes"
+x[x==2] <- "No"
+summary(x)
+x <- data.frame(x)
+fii[, grepl( "ever_used_mobile_money_for" , names(fii ) )] <- x
+
+
+#now fix all the "how often" questions:
+
+# 1=Daily/ Kila siku
+# 2=Weekly/ Kila wiki
+# 3=Once in 15 days/ Mara moja kwa siku 15
+# 4=Monthly/Kila mwezi
+# 5=Once every 3 months/
+#   Mara moja kila miezi 3
+# 6=Once every 6 months/
+#   Mara moja kila miezi 6
+# 7=Once a year/Mara moja kwa mwaka
+# 8=Almost never/Karibu na hakuna
+
+
+x <- fii[, grepl( "how_often_use_mobile_money_for" , names(fii ) )] 
+#x <- apply(x,2,as.factor)
+for (i in 1:ncol(x)){
+  x[,i]<- as.factor(x[,i])
+  levels(x[,i]) <-c(
+               "Daily",
+               "Weekly",
+               "15 days",
+               "Monthly",
+               "3 Months",
+               "6 Months",
+               "Annually",
+               "Almost Never"
+               )
+}
+x <- data.frame(x)
+fii[, grepl( "how_often_use_mobile_money_for" , names(fii ) )] <- x
+
+#remove "all NA" cols:
+fii <- fii[,colSums(is.na(fii))<nrow(fii)]
+#remove cols w/>1% NA values:
+x <- fii
+x <- x[,colSums(is.na(x))<(nrow(x)*.99)]
+fii <- x
+
+#Fix up: ever_used_any_mobile_money_service
+x <- fii[, grepl( "ever_used_any_mobile_money_service" , names(fii ) )] 
+x <- apply(x,2,as.factor)
+x[x==1] <- "Yes"
+x[x==2] <- "No"
+summary(x)
+x <- data.frame(x)
+fii[, grepl( "ever_used_any_mobile_money_service" , names(fii ) )] <- x
+
+#Fix up: have_account_with_any_mobile_money_service
+x <- fii[, grepl( "have_account_with_any_mobile_money_service" , names(fii ) )] 
+x <- apply(x,2,as.factor)
+x[x==1] <- "Yes"
+x[x==2] <- "No"
+summary(x)
+x <- data.frame(x)
+fii[, grepl( "have_account_with_any_mobile_money_service" , names(fii ) )] <- x
+
+#fix up last time w mobile money
+
+# 1=Yesterday/ Jana
+# 2=In the past 7 days/
+#   Siku 7 zilizopita
+# 3=In the past 30 days/
+#   Siku 30 zilizopita
+# 4=In the past 90 days/
+#   Siku 90 zilizopita
+# 5=More than 90 days ago/
+#   Zaidi ya siku 90 zilizopita
+# 6=Never/ Hakuna
+
+x <- fii[, grepl( "last_time_fin_activity_w_mobile_money" , names(fii ) )] 
+for (i in 1:ncol(x)){
+x[,i] <- as.factor(x[,i])
+levels(x[,i])<-c("Yesterday",
+                 "7 days",
+                 "30 days",
+                 "90 days",
+                 ">90 days",
+                 "Never")
+}
+summary(x)
+x <- data.frame(x)
+fii[, grepl( "last_time_fin_activity_w_mobile_money" , names(fii ) )] <- x
+
+#fix up last time w acccount
+
+# 1=Yesterday/ Jana
+# 2=In the past 7 days/
+#   Siku 7 zilizopita
+# 3=In the past 30 days/
+#   Siku 30 zilizopita
+# 4=In the past 90 days/
+#   Siku 90 zilizopita
+# 5=More than 90 days ago/
+#   Zaidi ya siku 90 zilizopita
+# 6=Never/ Hakuna
+
+x <- fii[, grepl( "last_time_financial_activity_using_account" , names(fii ) )] 
+#x <- apply(x,2,as.factor)
+for (i in 1:ncol(x)){
+  x[,i] <- as.factor(x[,i])
+  levels(x[,i])<-c("Yesterday",
+                   "7 days",
+                   "30 days",
+                   "90 days",
+                   ">90 days",
+                   "Never")
+}
+summary(x)
+x <- data.frame(x)
+fii[, grepl( "last_time_financial_activity_using_account" , names(fii ) )] <- x
+
+
+#fix up how_long_using_mobile_money
+
+# Less than 1 month/ Chini ya mwezi 1
+# More than 1 month to 3 months/ Zaidi ya mwezi 1 hadi miezi 3
+# More than 3 months to 6 months/ Zaidi ya miezi 3 ha 6
+# More than 6 months to 1 year/ Zaidi ya miezi 6 hadi mwaka 1
+# More than 1 year/ Zaidi yam waka 1
+
+levels(fii$how_long_using_mobile_money) <- c("<1 month",
+                                             "1-3 months",
+                                             "3-6 months",
+                                             "6-12 months",
+                                             ">12 months")
+
+
+#Now fix up minFS
+# 1=Yesterday/Jana
+# 2=In the past 7 days/ Katika siku saba zilizopita
+# 3=In the past 30 days/ Katika siku thelathini zilizopita
+# 4=In the past 90 days/ Katika siku tisini zilizopita
+# 5=More than 90 days ago/ Zaidi ya siku tisini zilizopita
+# 6=Never/ Sijawahi
+
+fii$minFS <- as.factor(fii$minFS)
+levels(fii$minFS) <- c("1 day",
+                       "7 days",
+                       "30 days",
+                       "90 days",
+                       ">90 days",
+                       "Never")
+summary(fii$minFS)
+
+fii$everFS <- as.factor(fii$everFS)
+fii$everFS[fii$everFS==0] <- "No"
+fii$everFS[fii$everFS==1] <- "Yes"
+summary(fii$everFS)
+
+
+#Now add friendly names for services:
+x<- fii
+# Safaricom M-Pesa
+# Airtel Money
+# YU Cash
+# Orange Money
+# Tangaza
+# Mobicash
+# Equitel
+
+names(x) <- sub("serv1", "MPesa", names(x) )
+names(x) <- sub("serv2", "AirtelMoney", names(x) )
+names(x) <- sub("serv3", "YUCash", names(x) )
+names(x) <- sub("serv4", "OrangeMoney", names(x) )
+names(x) <- sub("serv5", "Tangaza", names(x) )
+names(x) <- sub("serv6", "MobiCash", names(x) )
+names(x) <- sub("serv7", "Equitel", names(x) )
+
+#Now create table
+
+cgroup <- "Responses by Country"
+n.cgroup <- 4 #Countries, p-value
+rgroup <- names(fii)
+
+vars <- NULL
+n.rgroup <- NULL
+curRows <- NULL
+
+
+tempData <- fii
+
+j <- 2 #response varaible, country
+response <- tempData[,j]
+
+for(i in 1:ncol(tempData)){#start @2 to avoid X column
+  print(i)
+  tempCol <- tempData[,i]
+  
+  curRows <- getDescriptionStatsBy(tempCol, response, useNA='ifany', html=TRUE, show_all_values=TRUE, statistics=TRUE)
+  #curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
+  #curRows <- data.frame(curRows)
+  if(i>1){ #use colnames defined by first column
+    colnames(curRows) <- colnames(vars)
+  }
+  #rownames(curRows[1:length(levels(tempData[,i])),] <- levels(tempdata[i,])
+  vars <- do.call(rbind, list(vars, curRows))
+  #create rowcount for htmlTable:
+  n.rgroup <- c(n.rgroup, nrow(curRows))
+}
+#remove first row:
+vars <- vars[-1,]
+n.rgroup <- n.rgroup[-1]
+rgroup <- rgroup[-1]
+
+htmlTable(vars, 
+          rowlabel="", 
+          cgroup=cgroup, 
+          n.cgroup=n.cgroup, 
+          rgroup=rgroup, 
+          n.rgroup = n.rgroup, 
+          caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 8895 Respondents.<sup>&dagger;</sup> ", 
+          tfoot="<sup>&dagger;</sup> n=8955 observations, FII",
+          ctable=TRUE)
+#summary(fii)
+#names(fii)
 #5: Conclusions
 
 
+View(vars)
