@@ -12,8 +12,8 @@
 #4: FINDEX: Frequency Tables
 #5: Import Merged FII Wave 3 data
 #6: FII: Model Longitudinal Usage (Retention Proxy)
-#7: FII: Frequency Tables
-#5: Conclusions
+#7: FII: Frequency Tables and Simple Modeling
+#8: Conclusions
 
 #0: Import Libraries
 library(rpart)
@@ -269,7 +269,7 @@ rpart.plot(tree)
 names(tree)
 tree$cptable
 
-#7: FII: Frequency Tables
+#7: FII: Frequency Tables and Simple Modeling
 
 #Friendly Factor Row Names:
 
@@ -555,7 +555,9 @@ names(x) <- sub("serv6", "MobiCash", names(x) )
 names(x) <- sub("serv7", "Equitel", names(x) )
 names(x)
 names(fii) <- names(x)
-#Now create table
+
+
+#Now create table for country:
 
 cgroup <- "Responses by Country"
 n.cgroup <- 4 #Countries, p-value
@@ -601,4 +603,116 @@ htmlTable(vars,
           tfoot="<sup>&dagger;</sup> n=8955 observations, FII",
           ctable=TRUE)
 
-#5: Conclusions
+#Now create table for response variable:
+
+cgroup <- "Responses by Retention"
+n.cgroup <- 7 #time period levels, p-value
+rgroup <- names(fii)
+
+vars <- NULL
+n.rgroup <- NULL
+curRows <- NULL
+
+
+tempData <- fii
+
+j <- 82 #response varaible, minFS
+response <- tempData[,j]
+
+for(i in 1:ncol(tempData)){#start @2 to avoid X column
+  print(i)
+  tempCol <- tempData[,i]
+  
+  curRows <- getDescriptionStatsBy(tempCol, response, useNA='ifany', html=TRUE, show_all_values=TRUE, statistics=TRUE)
+  #curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
+  #curRows <- data.frame(curRows)
+  if(i>1){ #use colnames defined by first column
+    colnames(curRows) <- colnames(vars)
+  }
+  #rownames(curRows[1:length(levels(tempData[,i])),] <- levels(tempdata[i,])
+  vars <- do.call(rbind, list(vars, curRows))
+  #create rowcount for htmlTable:
+  n.rgroup <- c(n.rgroup, nrow(curRows))
+}
+#remove first row:
+vars <- vars[-1,]
+n.rgroup <- n.rgroup[-1]
+rgroup <- rgroup[-1]
+
+htmlTable(vars, 
+          rowlabel="", 
+          cgroup=cgroup, 
+          n.cgroup=n.cgroup, 
+          rgroup=rgroup, 
+          n.rgroup = n.rgroup, 
+          caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 8895 Respondents.<sup>&dagger;</sup> ", 
+          tfoot="<sup>&dagger;</sup> n=8955 observations, FII",
+          ctable=TRUE)
+
+
+#create variable for within 90 days:
+summary(fii$minFS)
+summary(as.factor(as.numeric(fii$minFS)))
+
+fii$fs90 <-as.factor(ifelse(as.numeric(fii$minFS) < 5,"Yes","No"))
+summary(fii$fs90)
+names(fii)
+
+#create table using new variable:
+cgroup <- "Mobile Money Usage Within 90 days"
+n.cgroup <- 3 #time period levels, p-value
+rgroup <- names(fii)
+
+vars <- NULL
+n.rgroup <- NULL
+curRows <- NULL
+
+
+tempData <- fii
+
+j <- 83 #response varaible, minFS
+response <- tempData[,j]
+
+for(i in 1:ncol(tempData)){#start @2 to avoid X column
+  print(i)
+  tempCol <- tempData[,i]
+  
+  curRows <- getDescriptionStatsBy(tempCol, response, useNA='ifany', html=TRUE, show_all_values=TRUE, statistics=TRUE)
+  #curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
+  #curRows <- data.frame(curRows)
+  if(i>1){ #use colnames defined by first column
+    colnames(curRows) <- colnames(vars)
+  }
+  #rownames(curRows[1:length(levels(tempData[,i])),] <- levels(tempdata[i,])
+  vars <- do.call(rbind, list(vars, curRows))
+  #create rowcount for htmlTable:
+  n.rgroup <- c(n.rgroup, nrow(curRows))
+}
+#remove first row:
+vars <- vars[-1,]
+n.rgroup <- n.rgroup[-1]
+rgroup <- rgroup[-1]
+
+htmlTable(vars, 
+          rowlabel="", 
+          cgroup=cgroup, 
+          n.cgroup=n.cgroup, 
+          rgroup=rgroup, 
+          n.rgroup = n.rgroup, 
+          caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 8895 Respondents.<sup>&dagger;</sup> ", 
+          tfoot="<sup>&dagger;</sup> n=8955 observations, FII",
+          ctable=TRUE)
+
+fii2 <- na.roughfix(fii)
+names(fii2)
+forest <- randomForest(fs90~.,data=fii2[,c(2:6,83)])
+varImpPlot(forest)
+plot(forest$err.rate[,1], type='l',col=4, main = "OOB Error Rate, Random Forest", sub="Kenya, Tanzania, Uganda, 2014: FII 8995 Respondents.")
+1-min(forest$err.rate[,1])
+#69% OOB accuracy to predict 90 day retention.
+
+tree <- rpart(fs90~.,data=fii2[,c(2:6,83)], cp=.001)
+plot(tree)
+text(tree)
+
+#8: Conclusions
