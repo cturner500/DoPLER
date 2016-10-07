@@ -1,0 +1,22 @@
+# Project Dirs  ##
+##################
+
+
+# File types     #
+##################
+*.bkup*
+*.pyc
+.log
+
+# Directories    #
+##################
+bkup/
+
+# Workspace      #
+##################
+*.sw[op]
+.ipynb_checkpoints
+ENV
+
+# Specific files #
+##################
