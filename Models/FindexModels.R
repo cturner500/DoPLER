@@ -13,7 +13,8 @@
 #5: Import Merged FII Wave 3 data
 #6: FII: Model Longitudinal Usage (Retention Proxy)
 #7: FII: Frequency Tables and Simple Modeling
-#8: Conclusions
+#8: FII: Modeling on derived retention
+#9: Conclusions
 
 #0: Import Libraries
 library(rpart)
@@ -98,6 +99,7 @@ tree <- rpart(If.has.account..made.a.transaction.using.a.mobile.phone ~.,data=d4
 par(mar=c(5,5,5,5))
 plot(tree)
 text(tree)
+par(mar=c(5,15,5,5))
 barplot(sort(tree$variable.importance), col=4, las=2, cex.names = .7, horiz=T, main="RPart Tree Variable Importance Plot: Predicting Use of Mobile Money", sub="Kenya, 2014: 1000 Respondents, 533 mobile account holders. Unweighted.")
 
 boxplot(d4$Respondent.age~d4$If.has.account..made.a.transaction.using.a.mobile.phone)
@@ -178,6 +180,49 @@ htmlTable(vars,
           caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 3008 Respondents, 1076 account holders. Unweighted. <sup>&dagger;</sup> 2014", 
           tfoot="<sup>&dagger;</sup> n=1076 observations, FINDEX 2014",
           ctable=TRUE)
+
+
+
+
+
+#Now, do one to compare by country:
+cgroup <- "Responses by Country"
+n.cgroup <- 4 #kenya, tanzania, uganda, p-value
+#rgroup <- names(d3)
+
+vars <- NULL
+n.rgroup <- NULL
+curRows <- NULL
+tempData <- d3
+#remove has.account(no variance, was a filter)
+tempData <- tempData[,-c(7:8)]
+rgroup <- names(tempData)
+#names(tempData)
+j <- 1 #response varaible, economy (country)
+
+for(i in 1:ncol(tempData)){
+  print(i)
+  curRows <- getDescriptionStatsBy(tempData[,i], tempData[,j], useNA='ifany', html=TRUE, show_all_values=TRUE, statistics=TRUE)
+  #curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
+  #curRows <- data.frame(curRows)
+  if(i>1){ #use colnames defined by first column
+    colnames(curRows) <- colnames(vars)
+  }
+  vars <- do.call(rbind, list(vars, curRows))
+  #create rowcount for htmlTable:
+  n.rgroup <- c(n.rgroup, nrow(curRows))
+}
+
+htmlTable(vars, 
+          rowlabel="", 
+          cgroup=cgroup, 
+          n.cgroup=n.cgroup, 
+          rgroup=rgroup, 
+          n.rgroup = n.rgroup, 
+          caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 3008 Respondents, 1076 account holders. Unweighted. <sup>&dagger;</sup> 2014", 
+          tfoot="<sup>&dagger;</sup> n=1076 observations, FINDEX 2014",
+          ctable=TRUE)
+
 
 
 #5: Import Merged FII Wave 3 data
@@ -715,4 +760,68 @@ tree <- rpart(fs90~.,data=fii2[,c(2:6,83)], cp=.001)
 plot(tree)
 text(tree)
 
-#8: Conclusions
+
+
+
+
+#8: FII: Modeling on derived retention
+dat <- read.csv("/Users/Cameron/Google Drive/DataGuild/Rockefeller/DoPLER/Data/derived_data/all_data_20161006.csv")
+names(dat)
+dat <- dat[dat$country!='nigeria',]
+
+#append fii with Aman's new variables (funnel)
+names(dat)
+names(fii)
+fii <- cbind(fii, dat[,c(126:141)])
+names(fii)
+
+#create table using new variable:
+cgroup <- "Retention by Factors, FII"
+n.cgroup <- 3 #retention, p-value
+rgroup <- names(fii)
+
+vars <- NULL
+n.rgroup <- NULL
+curRows <- NULL
+
+
+tempData <- fii
+
+j <- 99 #response varaible, funnel.retention
+response <- tempData[,j]
+
+for(i in 1:ncol(tempData)){#start @2 to avoid X column
+  print(i)
+  tempCol <- tempData[,i]
+  
+  curRows <- getDescriptionStatsBy(tempCol, response, useNA='ifany', html=TRUE, show_all_values=TRUE, statistics=TRUE)
+  #curRows <- as.matrix(curRows, nrow=length(names(tempData[,i])), ncol=3)
+  #curRows <- data.frame(curRows)
+  if(i>1){ #use colnames defined by first column
+    colnames(curRows) <- colnames(vars)
+  }
+  #rownames(curRows[1:length(levels(tempData[,i])),] <- levels(tempdata[i,])
+  vars <- do.call(rbind, list(vars, curRows))
+  #create rowcount for htmlTable:
+  n.rgroup <- c(n.rgroup, nrow(curRows))
+}
+#remove first row:
+vars <- vars[-1,]
+n.rgroup <- n.rgroup[-1]
+rgroup <- rgroup[-1]
+
+htmlTable(vars, 
+          rowlabel="", 
+          cgroup=cgroup, 
+          n.cgroup=n.cgroup, 
+          rgroup=rgroup, 
+          n.rgroup = n.rgroup, 
+          caption="The Data Guild, Project DoPLER: Kenya, Tanzania, Uganda, 8895 Respondents.<sup>&dagger;</sup> ", 
+          tfoot="<sup>&dagger;</sup> n=8955 observations, FII",
+          ctable=TRUE)
+
+
+
+
+
+#9: Conclusions
